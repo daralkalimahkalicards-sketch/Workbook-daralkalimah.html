@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cahier d'Exercices — Dar Al-Kalimah كُتَيِّبُ التَّدْرِيبَات</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --bx:#5D1828; --bxd:#3D0E18; --bxl:#8B2E40; --bxp:rgba(93,24,40,.06);
+  --gold:#C8A462; --goldl:#DFC08A; --goldp:#FDF6E8; --goldd:#A07A3A;
+  --white:#FFFFFF; --cream:#FDFAF6; --off:#F8F3EE;
+  --text:#2A1015; --muted:rgba(42,16,21,.55); --light:rgba(42,16,21,.35);
+  --c1:#D4614A; --c2:#4A9B8E; --c3:#5B8DB8; --c4:#9B7ED4; --c5:#E8A838;
+  --r:12px; --rl:20px;
+  --shadow:0 4px 20px rgba(93,24,40,.08);
+  --shadow-md:0 8px 32px rgba(93,24,40,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);line-height:1.7;overflow-x:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* ═══════════════════════════════════════
+   BOUTON IMPRESSION
+═══════════════════════════════════════ */
+.sc{text-align:center;padding:16px;background:var(--bxd);position:sticky;top:0;z-index:100}
+.btn-print{background:var(--gold);color:var(--bxd);font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;padding:10px 28px;border:none;cursor:pointer;border-radius:2px;transition:all .3s}
+.btn-print:hover{background:var(--goldl);transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════
+   PAGE A4
+═══════════════════════════════════════ */
+.page{
+  width:210mm; min-height:297mm;
+  background:var(--white);
+  margin:0 auto 16px;
+  box-shadow:var(--shadow-md);
+  display:flex; flex-direction:column;
+  position:relative;
+  page-break-after:always; break-after:page;
+  overflow:hidden;
+}
+
+/* ═══════════════════════════════════════
+   COUVERTURE
+═══════════════════════════════════════ */
+.cover{
+  width:210mm; height:297mm;
+  background:var(--bxd);
+  margin:0 auto 16px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:space-between;
+  position:relative;
+  page-break-after:always; break-after:page;
+  overflow:hidden;
+}
+.cov-pattern{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(45deg,rgba(200,164,98,.04) 0,rgba(200,164,98,.04) 1px,transparent 0,transparent 50%),
+    repeating-linear-gradient(-45deg,rgba(200,164,98,.04) 0,rgba(200,164,98,.04) 1px,transparent 0,transparent 50%);
+  background-size:24px 24px;
+}
+.cov-frame{position:absolute;top:10mm;left:10mm;right:10mm;bottom:10mm;border:1px solid rgba(200,164,98,.3);border-radius:3px}
+.cov-frame::before{content:'';position:absolute;top:3mm;left:3mm;right:3mm;bottom:3mm;border:1px solid rgba(200,164,98,.15);border-radius:2px}
+.cov-c{position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid;opacity:.6}
+.cov-c.tl{top:9.5mm;left:9.5mm;border-width:2px 0 0 2px}
+.cov-c.tr{top:9.5mm;right:9.5mm;border-width:2px 2px 0 0}
+.cov-c.bl{bottom:9.5mm;left:9.5mm;border-width:0 0 2px 2px}
+.cov-c.br{bottom:9.5mm;right:9.5mm;border-width:0 2px 2px 0}
+
+.cov-top{position:relative;z-index:1;text-align:center;padding:22mm 20mm 0;width:100%}
+.cov-brand-ar{font-family:'Amiri',serif;font-size:1.2rem;color:rgba(200,164,98,.55);direction:rtl;margin-bottom:3px}
+.cov-brand-fr{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.5em;color:rgba(200,164,98,.3);text-transform:uppercase}
+.cov-sep{width:40px;height:1px;background:rgba(200,164,98,.25);margin:8mm auto}
+
+.cov-center{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 18mm;width:100%}
+.cov-icon-wrap{width:90px;height:90px;background:linear-gradient(135deg,var(--bxl),var(--bx));border:2.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8mm;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.cov-icon-ar{font-family:'Amiri',serif;font-size:2.8rem;color:var(--gold);direction:rtl;line-height:1}
+.cov-title-ar{font-family:'Amiri',serif;font-size:2rem;color:var(--gold);direction:rtl;line-height:1.3;margin-bottom:4mm}
+.cov-title-sub{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(255,255,255,.55);text-transform:uppercase;margin-bottom:2mm}
+.cov-title-fr{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:700;color:var(--white);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2mm}
+.cov-title-es{font-size:.66rem;color:rgba(255,255,255,.3);font-style:italic;margin-bottom:8mm}
+.cov-rule{width:60px;height:1.5px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 7mm}
+.cov-badges{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:7mm}
+.cov-badge{background:rgba(200,164,98,.1);border:1px solid rgba(200,164,98,.28);border-radius:20px;padding:5px 14px;font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.16em;color:var(--goldl);text-transform:uppercase}
+.cov-name-box{background:rgba(200,164,98,.07);border:1px dashed rgba(200,164,98,.3);border-radius:8px;padding:10px 24px;text-align:center}
+.cov-name-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:rgba(200,164,98,.35);text-transform:uppercase;display:block;margin-bottom:3px}
+.cov-name-line{width:120px;height:1px;background:rgba(200,164,98,.2);margin:0 auto}
+
+.cov-bottom{position:relative;z-index:1;width:100%;padding:0 20mm 18mm;text-align:center}
+.cov-fond-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.24em;color:rgba(200,164,98,.32);text-transform:uppercase;margin-bottom:4mm}
+.cov-fond-ar{font-family:'Amiri',serif;font-size:.95rem;color:rgba(200,164,98,.45);direction:rtl;margin-bottom:2mm}
+.cov-fond-lat{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.18em;color:rgba(200,164,98,.36);text-transform:uppercase;margin-bottom:5mm}
+.cov-copyright{font-family:'Cinzel',serif;font-size:.34rem;letter-spacing:.2em;color:rgba(200,164,98,.2);text-transform:uppercase}
+
+/* ═══════════════════════════════════════
+   EN-TÊTE DE PAGE
+═══════════════════════════════════════ */
+.p-head{
+  background:linear-gradient(90deg,var(--bxd),var(--bx));
+  padding:8px 14mm 9px;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  position:relative; flex-shrink:0; gap:2px;
+}
+.p-head::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.ph-brand{font-family:'Amiri',serif;font-size:.95rem;color:var(--gold);direction:rtl}
+.ph-sep{width:20px;height:.5px;background:rgba(200,164,98,.3);margin:1px auto}
+.ph-mod{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.3em;color:var(--goldl);text-transform:uppercase}
+.ph-title-ar{font-family:'Amiri',serif;font-size:.9rem;color:rgba(255,255,255,.8);direction:rtl}
+.ph-title-fr{font-family:'Montserrat',sans-serif;font-size:.44rem;font-weight:700;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em}
+
+/* ═══════════════════════════════════════
+   CORPS + PIED
+═══════════════════════════════════════ */
+.p-body{flex:1;padding:6mm 14mm 5mm;display:flex;flex-direction:column;gap:5mm}
+.p-foot{padding:4px 14mm;border-top:.5px solid rgba(200,164,98,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pf-copy{font-size:.36rem;color:rgba(107,80,85,.45)}
+.pf-pg{font-family:'Cinzel',serif;font-size:.4rem;color:var(--gold);letter-spacing:.12em}
+
+/* ═══════════════════════════════════════
+   TITRE DE MODULE
+═══════════════════════════════════════ */
+.mod-hd{text-align:center;padding:3mm 0 4mm;border-bottom:1.5px dotted rgba(200,164,98,.3)}
+.mod-badge{display:inline-block;background:var(--bx);color:var(--gold);font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.28em;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:5px}
+.mod-ar{font-family:'Amiri',serif;font-size:1.5rem;color:var(--bxd);direction:rtl;line-height:1.3;margin-bottom:3px}
+.mod-fr{font-size:.68rem;font-weight:700;color:var(--bx);margin-bottom:1px}
+.mod-es{font-size:.56rem;color:var(--muted);font-style:italic}
+.mod-rule{width:32px;height:2px;background:var(--gold);margin:5px auto 0;border-radius:1px}
+
+/* ═══════════════════════════════════════
+   EXERCICE — COMPOSANTS
+═══════════════════════════════════════ */
+.exo-block{border:1.5px solid rgba(200,164,98,.2);border-radius:var(--r);overflow:hidden;page-break-inside:avoid;break-inside:avoid}
+.exo-hd{background:linear-gradient(90deg,var(--bxd),var(--bx));padding:6px 12px;display:flex;align-items:center;gap:8px}
+.exo-num{width:22px;height:22px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.46rem;font-weight:700;color:var(--bxd);flex-shrink:0}
+.exo-title-ar{font-family:'Amiri',serif;font-size:.85rem;color:var(--gold);direction:rtl;text-align:right;flex:1}
+.exo-title-fr{font-family:'Montserrat',sans-serif;font-size:.5rem;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;direction:ltr;margin-left:auto}
+.exo-bd{background:var(--white);padding:10px 12px}
+.exo-instr{font-size:.58rem;color:var(--muted);font-style:italic;margin-bottom:7px;border-left:2px solid var(--goldl);padding-left:7px}
+
+/* Lignes d'écriture */
+.write-line{height:20px;border-bottom:1px dashed rgba(200,164,98,.4);margin-bottom:4px;position:relative}
+.write-line::before{content:'✏️';position:absolute;right:-18px;top:2px;font-size:.5rem;opacity:.3}
+.write-box{border:1.5px dashed rgba(200,164,98,.4);border-radius:8px;min-height:28px;padding:5px 8px;margin-bottom:5px;display:flex;align-items:center;direction:rtl}
+.write-box-sm{border:1.5px dashed rgba(200,164,98,.4);border-radius:6px;min-height:24px;padding:3px 8px;margin-bottom:4px;flex:1;display:flex;align-items:center;justify-content:center}
+
+/* Grille d'écriture arabe (lignes arabes) */
+.arabic-write-grid{display:grid;grid-template-columns:1fr;gap:5px}
+.aw-row{display:flex;align-items:center;gap:8px;padding:6px 8px;background:var(--off);border-radius:8px;border:1px solid rgba(200,164,98,.15);direction:rtl}
+.aw-model{font-family:'Amiri',serif;font-size:1.2rem;color:var(--bx);direction:rtl;font-weight:700;min-width:40px;text-align:right;flex-shrink:0}
+.aw-pho{font-size:.54rem;font-weight:700;color:var(--bxl);min-width:44px;flex-shrink:0}
+.aw-fr{font-size:.54rem;color:var(--muted);flex:1}
+.aw-lines{flex:2;display:flex;flex-direction:column;gap:3px}
+.aw-line{height:16px;border-bottom:1px dashed rgba(200,164,98,.35)}
+
+/* Grille de QCM */
+.qcm-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.qcm-item{display:flex;align-items:center;gap:6px;padding:5px 9px;border:1.5px solid rgba(200,164,98,.2);border-radius:8px;cursor:pointer;transition:all .3s}
+.qcm-item:hover{border-color:var(--gold);background:var(--goldp)}
+.qcm-circle{width:14px;height:14px;border:1.5px solid var(--gold);border-radius:50%;flex-shrink:0}
+.qcm-txt{font-size:.58rem;color:var(--text)}
+.qcm-ar{font-family:'Amiri',serif;font-size:.95rem;color:var(--bx);direction:rtl;margin-right:auto}
+
+/* Colonnes de relier */
+.match-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:start}
+.match-col{display:flex;flex-direction:column;gap:5px}
+.match-item-ar{font-family:'Amiri',serif;font-size:1.05rem;color:var(--bxd);direction:rtl;text-align:right;padding:5px 10px;background:var(--off);border-radius:7px;border-left:3px solid var(--bxl);font-weight:700}
+.match-item-fr{font-size:.6rem;font-weight:600;color:var(--text);padding:6px 10px;background:var(--off);border-radius:7px;border-right:3px solid var(--goldl)}
+.match-lines{display:flex;flex-direction:column;gap:5px;align-items:center;padding-top:5px}
+.match-dot{width:8px;height:8px;border:1.5px solid var(--gold);border-radius:50%;background:var(--white)}
+
+/* Tableau exercice */
+.tbl-exo{width:100%;border-collapse:collapse;direction:rtl}
+.tbl-exo th{background:var(--bxd);color:var(--goldl);font-family:'Montserrat',sans-serif;font-size:.46rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:5px 7px;text-align:center;border:1px solid rgba(200,164,98,.15);direction:ltr}
+.tbl-exo th.ar{font-family:'Amiri',serif;font-size:.7rem;letter-spacing:0;color:var(--gold);direction:rtl}
+.tbl-exo td{padding:5px 7px;border:1px solid rgba(200,164,98,.18);text-align:center;vertical-align:middle;font-size:.58rem;direction:ltr;height:26px}
+.tbl-exo td.ar{font-family:'Amiri',serif;font-size:.95rem;color:var(--bx);direction:rtl;text-align:right;font-weight:700}
+.tbl-exo td.empty{background:var(--goldp);border-style:dashed}
+.tbl-exo tr:nth-child(even) td{background:rgba(200,164,98,.03)}
+
+/* Mots à classer */
+.sort-words{display:flex;gap:5px;flex-wrap:wrap;padding:8px;background:var(--goldp);border-radius:10px;border:1.5px solid rgba(200,164,98,.2);margin-bottom:8px;direction:rtl;justify-content:center}
+.sw{font-family:'Amiri',serif;font-size:1.05rem;color:var(--bxd);background:var(--white);border:1.5px solid rgba(200,164,98,.3);border-radius:7px;padding:4px 10px;direction:rtl;font-weight:700}
+.sort-boxes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sort-box{border:1.5px dashed rgba(200,164,98,.4);border-radius:10px;min-height:42px;padding:6px 8px;position:relative}
+.sort-box-lbl{position:absolute;top:-9px;left:10px;background:var(--white);padding:1px 7px;font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;border-radius:3px}
+
+/* Bloc "Encadre / Entoure" */
+.highlight-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:8px;direction:rtl}
+.hl-word{font-family:'Amiri',serif;font-size:1.1rem;color:var(--bxd);border:1.5px solid rgba(200,164,98,.25);border-radius:8px;padding:5px 12px;background:var(--off)}
+.hl-word.hl-green{border-color:var(--c2);background:rgba(74,155,142,.07)}
+.hl-word.hl-red{border-color:var(--c1);background:rgba(212,97,74,.07)}
+
+/* Verset exercice */
+.verset-exo{display:grid;grid-template-columns:20px 1fr;gap:6px;padding:6px 10px;background:var(--off);border-radius:8px;border:1px solid rgba(200,164,98,.15);margin-bottom:4px}
+.ve-num{font-family:'Cinzel',serif;font-size:.44rem;color:var(--gold);border:1px solid rgba(200,164,98,.3);border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.ve-ar{font-family:'Amiri',serif;font-size:.95rem;color:var(--bxd);direction:rtl;text-align:right;line-height:1.8;margin-bottom:2px}
+.ve-ph{font-size:.52rem;font-weight:700;color:var(--bxl);margin-bottom:1px}
+.ve-line{height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-bottom:2px}
+
+/* Résumé / À retenir */
+.ret{background:var(--bxd);border:2px solid rgba(200,164,98,.28);border-radius:var(--r);padding:9px 12px;display:flex;flex-direction:row-reverse;gap:9px;align-items:flex-start;page-break-inside:avoid}
+.ret-star{font-size:1rem;flex-shrink:0;animation:shimmer 2.5s ease-in-out infinite}
+.ret-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.2em;color:var(--goldl);text-transform:uppercase;margin-bottom:3px;text-align:right}
+.ret-ar{font-family:'Amiri',serif;font-size:.88rem;color:var(--gold);direction:rtl;text-align:right;line-height:1.6;margin-bottom:2px}
+.ret-fr{font-size:.6rem;color:rgba(255,255,255,.85);line-height:1.55;margin-bottom:1px;font-weight:600}
+.ret-es{font-size:.52rem;color:rgba(255,255,255,.35);font-style:italic;line-height:1.4}
+
+/* Grille harakats */
+.hk-row{display:flex;gap:6px;flex-wrap:wrap;direction:rtl;margin-bottom:5px}
+.hk-card{border:2px solid rgba(200,164,98,.2);border-top:3px solid var(--gold);border-radius:10px;text-align:center;padding:7px 5px;background:var(--white);flex:1;min-width:44px}
+.hk-card .hs{font-family:'Amiri',serif;font-size:1.6rem;color:var(--bx);direction:rtl;display:block;line-height:1.3}
+.hk-card .hn{font-family:'Cinzel',serif;font-size:.33rem;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;display:block;margin-top:1px}
+.hk-card .hv{font-size:.6rem;font-weight:800;color:var(--bxd);display:block}
+
+/* Lettres grid */
+.lt-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;direction:rtl}
+.lt{border:1.5px solid rgba(200,164,98,.2);border-radius:8px;text-align:center;padding:4px 2px;background:var(--white)}
+.lt.nc{background:rgba(93,24,40,.04);border-color:rgba(93,24,40,.15)}
+.lt .la{font-family:'Amiri',serif;font-size:1.2rem;color:var(--bx);direction:rtl;display:block;line-height:1.2}
+.lt.nc .la{color:var(--bxl)}
+.lt .ln{font-size:.33rem;color:var(--muted);display:block;margin-top:1px}
+
+/* Forme 4 colonnes */
+.forms4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.f4card{border-radius:10px;padding:7px 5px;text-align:center}
+.f4card.fi{border:2px solid var(--c1);background:rgba(212,97,74,.06)}
+.f4card.fa{border:2px solid var(--c2);background:rgba(74,155,142,.06)}
+.f4card.fm{border:2px solid var(--c3);background:rgba(91,141,184,.06)}
+.f4card.ff{border:2px solid var(--c4);background:rgba(155,126,212,.06)}
+.f4label{font-size:.44rem;font-weight:800;display:block;margin-bottom:3px}
+.f4card.fi .f4label{color:var(--c1)} .f4card.fa .f4label{color:var(--c2)} .f4card.fm .f4label{color:var(--c3)} .f4card.ff .f4label{color:var(--c4)}
+.f4ar{font-family:'Amiri',serif;font-size:1.3rem;direction:rtl;display:block;font-weight:700}
+.f4card.fi .f4ar{color:var(--c1)} .f4card.fa .f4ar{color:var(--c2)} .f4card.fm .f4ar{color:var(--c3)} .f4card.ff .f4ar{color:var(--c4)}
+.f4line{width:100%;height:16px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:4px}
+
+/* Vocab grid */
+.vc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;direction:rtl}
+.vc{border:1.5px solid rgba(200,164,98,.2);border-radius:9px;padding:6px 7px;background:var(--white);text-align:right}
+.vc-emoji{font-size:1.1rem;display:block;text-align:center;margin-bottom:2px}
+.vc-ar{font-family:'Amiri',serif;font-size:.95rem;color:var(--bx);direction:rtl;display:block;font-weight:700}
+.vc-fr{font-size:.48rem;color:var(--text);display:block;margin-top:1px;direction:ltr;text-align:left;font-weight:700}
+
+/* Phrase boîtes */
+.phrase-boxes{display:flex;align-items:center;gap:6px;flex-wrap:wrap;direction:rtl;padding:8px;background:var(--goldp);border-radius:10px;margin-bottom:5px}
+.pb-blue{background:var(--c3);color:var(--white);border-radius:8px;padding:5px 10px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;font-weight:700}
+.pb-green{background:var(--c2);color:var(--white);border-radius:8px;padding:5px 10px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;font-weight:700}
+.pb-red{background:var(--c1);color:var(--white);border-radius:8px;padding:5px 10px;font-family:'Amiri',serif;font-size:1rem;direction:rtl;font-weight:700}
+.pb-empty{border:1.5px dashed rgba(200,164,98,.5);border-radius:8px;padding:5px 10px;min-width:60px;min-height:30px;background:var(--white)}
+.pb-plus{font-size:1rem;color:rgba(107,80,85,.4);font-weight:900}
+.pb-eq{font-size:1rem;color:var(--gold);font-weight:900}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS SCROLL
+═══════════════════════════════════════ */
+@keyframes shimmer{0%,100%{opacity:.4}50%{opacity:1}}
+
+@media screen{
+  .will-anim{opacity:0;transition:opacity .6s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
+  .will-anim.up{transform:translateY(24px)}
+  .will-anim.right{transform:translateX(-18px)}
+  .will-anim.scale{transform:scale(.92)}
+  .will-anim.on{opacity:1!important;transform:none!important}
+}
+
+/* ═══════════════════════════════════════
+   PRINT
+═══════════════════════════════════════ */
+@media print{
+  body{background:white}
+  .sc{display:none!important;position:static}
+  .cover,.page{margin:0;box-shadow:none;page-break-after:always;break-after:page}
+  .cover{width:210mm!important;height:297mm!important}
+  .page{width:210mm!important;min-height:297mm}
+  *{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+  @page{size:A4;margin:0}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media screen and (max-width:768px){
+  .cover,.page{width:100%!important;height:auto!important;min-height:0;box-shadow:0 2px 12px rgba(0,0,0,.1);margin-bottom:8px;border-radius:0}
+  .p-body{padding:5mm 4mm 4mm;gap:4mm}
+  .p-head{padding:7px 4mm}
+  .p-foot{padding:3px 4mm}
+  .lt-grid{grid-template-columns:repeat(5,1fr)!important;gap:2px}
+  .vc-grid{grid-template-columns:repeat(3,1fr)!important}
+  .forms4{grid-template-columns:1fr 1fr!important}
+  .qcm-grid{grid-template-columns:1fr!important}
+  .sort-boxes{grid-template-columns:1fr!important}
+  .match-grid{grid-template-columns:1fr!important}
+  .match-lines{display:none}
+}
+@media screen and (max-width:480px){
+  .p-body{padding:4mm 2.5mm 3mm;gap:3mm}
+  .lt-grid{grid-template-columns:repeat(4,1fr)!important}
+  .vc-grid{grid-template-columns:repeat(2,1fr)!important}
+  .hk-row{flex-wrap:wrap}
+  .verset-exo{grid-template-columns:16px 1fr!important}
+  .phrase-boxes{gap:4px}
+}
+
+/* ══ CORRECTION TITRES ARABES — WORKBOOK ══ */
+
+/* Titres d'exercices : arabe à droite, prend l'espace */
+.exo-title-ar {
+  text-align: right !important;
+  direction: rtl !important;
+  flex: 1 !important;
+}
+
+/* Titres de modules */
+.mod-ar {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* À retenir */
+.ret-ar {
+  text-align: right !important;
+  direction: rtl !important;
+}
+.ret-lbl {
+  text-align: right !important;
+}
+
+/* En-têtes de page */
+.ph-brand, .ph-title-ar {
+  text-align: center !important;
+  direction: rtl !important;
+}
+
+/* Corps arabes */
+.aw-model,
+.match-item-ar,
+.ve-ar,
+.f4ar,
+.lt .la,
+.hk-card .hs,
+.vc-ar,
+.tbl-exo td.ar,
+.tbl-exo th.ar,
+.sw,
+.cov-brand-ar,
+.cov-title-ar,
+.cov-fond-ar,
+.cov-icon-ar,
+.pb-blue,
+.pb-green,
+.pb-red,
+.highlight-row .hl-word {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* Grilles et conteneurs RTL */
+.sort-words, .lt-grid, .vc-grid, .hk-row, .phrase-boxes, .highlight-row {
+  direction: rtl !important;
+}
+
+/* Catch-all : tout élément avec direction:rtl */
+[dir="rtl"],
+[style*="direction:rtl"],
+[style*="direction: rtl"] {
+  text-align: right !important;
+}
+
+/* ══ LAYOUT EN-TÊTE EXERCICE : num+FR gauche · AR droite ══ */
+.exo-hd {
+  justify-content: space-between !important;
+}
+.exo-num {
+  order: 1 !important;
+  flex-shrink: 0 !important;
+}
+.exo-title-fr {
+  order: 2 !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+  direction: ltr !important;
+}
+.exo-title-ar {
+  order: 3 !important;
+  text-align: right !important;
+  direction: rtl !important;
+  flex: 1 !important;
+  margin-left: auto !important;
+}
+
+/* Même principe pour les mod-hd : FR gauche · AR droite */
+.mod-hd {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  text-align: left !important;
+  border-bottom: 1.5px dotted rgba(200,164,98,.3);
+  padding: 3mm 0 4mm;
+}
+/* Groupe gauche du mod-hd */
+.mod-hd-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* AR du mod-hd à droite */
+.mod-ar {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+
+/* ══ EN-TÊTE PAGE : brand+mod centré, titres séparés ══ */
+.p-head {
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 7px 14mm !important;
+  gap: 4px !important;
+}
+.ph-brand, .ph-sep {
+  width: 100% !important;
+  text-align: center !important;
+}
+.ph-mod {
+  text-align: center !important;
+  width: 100% !important;
+}
+.ph-title-fr {
+  order: 1 !important;
+  text-align: left !important;
+  direction: ltr !important;
+  flex: 1 !important;
+}
+.ph-title-ar {
+  order: 2 !important;
+  text-align: right !important;
+  direction: rtl !important;
+  flex: 1 !important;
+}
+
+/* ══ MOD-HD : badge+fr à gauche, ar à droite ══ */
+.mod-hd {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 3mm 0 4mm !important;
+  border-bottom: 1.5px dotted rgba(200,164,98,.3) !important;
+}
+.mod-badge {
+  /* reste inline-block */
+}
+.mod-ar {
+  text-align: right !important;
+  direction: rtl !important;
+  font-family: 'Amiri', serif !important;
+  flex-shrink: 0 !important;
+  max-width: 50% !important;
+}
+.mod-fr, .mod-es, .mod-rule {
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+/* ══ RET : lbl+fr à gauche, ar à droite ══ */
+.ret {
+  flex-direction: row !important;
+}
+.ret-star {
+  order: 0 !important;
+  flex-shrink: 0 !important;
+}
+.ret > div:last-child {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  flex: 1 !important;
+  gap: 12px !important;
+}
+.ret-ar {
+  text-align: right !important;
+  direction: rtl !important;
+  flex: 1 !important;
+}
+.ret-lbl, .ret-fr, .ret-es {
+  text-align: left !important;
+  direction: ltr !important;
+  flex: 1 !important;
+}
+
+
+/* ══ NUMÉROS À DROITE : FR gauche · AR titre · num cercle ══ */
+.exo-num {
+  order: 3 !important;
+  margin-left: 8px !important;
+}
+.exo-title-fr {
+  order: 1 !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+}
+.exo-title-ar {
+  order: 2 !important;
+  text-align: right !important;
+  direction: rtl !important;
+  flex: 1 !important;
+  margin-left: auto !important;
+}
+
+
+/* ══ LIGNES D'ÉCRITURE : modèle AR à droite, phonétique+FR à gauche ══ */
+.aw-model {
+  text-align: right !important;
+  direction: rtl !important;
+  font-family: 'Amiri', serif !important;
+  font-size: 1.2rem !important;
+  color: var(--bx) !important;
+  font-weight: 700 !important;
+  flex-shrink: 0 !important;
+  min-width: 46px !important;
+}
+.aw-pho {
+  direction: ltr !important;
+  text-align: left !important;
+  font-size: .54rem !important;
+  font-weight: 700 !important;
+  color: var(--bxl) !important;
+  flex-shrink: 0 !important;
+}
+.aw-fr {
+  direction: ltr !important;
+  text-align: left !important;
+  font-size: .54rem !important;
+  color: var(--muted) !important;
+  flex: 1 !important;
+}
+.aw-lines {
+  flex: 2 !important;
+}
+.aw-line {
+  height: 16px !important;
+  border-bottom: 1px dashed rgba(200,164,98,.4) !important;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sc"><button class="btn-print" onclick="window.print()">◆ Imprimer le Workbook — Cahier d'Exercices Complet</button></div>
+
+<!-- ═══════════════════════════════
+     COUVERTURE
+═══════════════════════════════ -->
+<div class="cover">
+  <div class="cov-pattern"></div>
+  <div class="cov-frame"></div>
+  <div class="cov-c tl"></div><div class="cov-c tr"></div>
+  <div class="cov-c bl"></div><div class="cov-c br"></div>
+
+  <div class="cov-top">
+    <div class="cov-brand-ar">دار الكلمة</div>
+    <div class="cov-brand-fr">Dar Al-Kalimah</div>
+    <div class="cov-sep"></div>
+  </div>
+
+  <div class="cov-center">
+    <div class="cov-icon-wrap">
+      <span class="cov-icon-ar">كت</span>
+    </div>
+    <div class="cov-title-ar">كُتَيِّبُ التَّدْرِيبَات</div>
+    <div class="cov-title-sub">Cahier d'Exercices · Cuaderno de Ejercicios</div>
+    <div class="cov-title-fr">Workbook Complet</div>
+    <div class="cov-title-es">Cuaderno completo de práctica</div>
+    <div class="cov-rule"></div>
+    <div class="cov-badges">
+      <span class="cov-badge">12 Modules</span>
+      <span class="cov-badge">Exercices guidés</span>
+      <span class="cov-badge">FR · ES · AR</span>
+      <span class="cov-badge">Imprimable A4</span>
+    </div>
+    <div class="cov-name-box">
+      <span class="cov-name-lbl">Mon prénom · اسمي · Mi nombre</span>
+      <div class="cov-name-line"></div>
+    </div>
+  </div>
+
+  <div class="cov-bottom">
+    <div class="cov-fond-lbl">Fondatrice · المؤسِّسة</div>
+    <div class="cov-fond-ar">هدى لحريشي</div>
+    <div class="cov-fond-lat">Houda Lahrichi</div>
+    <div class="cov-copyright">© Dar Al-Kalimah · daralkalimah.com · Propriété exclusive</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════
+     MODULE 1 — LES LETTRES
+═══════════════════════════════ -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 1 · وحدة ١</div>
+    <div class="ph-title-ar">الحُرُوف الهِجَائِيَّة</div>
+    <div class="ph-title-fr">Les lettres arabes · Las letras árabes</div>
+  </div>
+  <div class="p-body">
+
+    <div class="mod-hd">
+      <div class="mod-badge">Module 1</div>
+      <div class="mod-ar">الحُرُوف الـ٢٨</div>
+      <div class="mod-fr">Les 28 lettres — exercices</div>
+      <div class="mod-es">Las 28 letras — ejercicios</div>
+      <div class="mod-rule"></div>
+    </div>
+
+    <!-- EXO 1 : Identifier les 6 lettres ◆ -->
+    <div class="exo-block">
+      <div class="exo-hd">
+        <div class="exo-num">1</div>
+        <div class="exo-title-ar">حَدِّدِ الحُرُوف الـ٦ ◆</div>
+        <div class="exo-title-fr">Entoure les 6 lettres spéciales ◆</div>
+      </div>
+      <div class="exo-bd">
+        <div class="exo-instr">Entoure les 6 lettres qui ne se connectent jamais à gauche · Rodea las 6 letras que no conectan a la izquierda</div>
+        <div class="lt-grid">
+          <div class="lt"><span class="la">ا</span><span class="ln">alif</span></div>
+          <div class="lt"><span class="la">ب</span><span class="ln">bâ</span></div>
+          <div class="lt"><span class="la">ت</span><span class="ln">tâ</span></div>
+          <div class="lt"><span class="la">ج</span><span class="ln">jîm</span></div>
+          <div class="lt"><span class="la">د</span><span class="ln">dâl</span></div>
+          <div class="lt"><span class="la">ذ</span><span class="ln">dhâl</span></div>
+          <div class="lt"><span class="la">ر</span><span class="ln">râ</span></div>
+          <div class="lt"><span class="la">ز</span><span class="ln">zây</span></div>
+          <div class="lt"><span class="la">س</span><span class="ln">sîn</span></div>
+          <div class="lt"><span class="la">ش</span><span class="ln">shîn</span></div>
+          <div class="lt"><span class="la">ع</span><span class="ln">ayn</span></div>
+          <div class="lt"><span class="la">ف</span><span class="ln">fâ</span></div>
+          <div class="lt"><span class="la">ك</span><span class="ln">kâf</span></div>
+          <div class="lt"><span class="la">ل</span><span class="ln">lâm</span></div>
+          <div class="lt"><span class="la">م</span><span class="ln">mîm</span></div>
+          <div class="lt"><span class="la">ن</span><span class="ln">nûn</span></div>
+          <div class="lt"><span class="la">و</span><span class="ln">wâw</span></div>
+          <div class="lt"><span class="la">ي</span><span class="ln">yâ</span></div>
+          <div class="lt"><span class="la">ه</span><span class="ln">hâ</span></div>
+          <div class="lt"><span class="la">ق</span><span class="ln">qâf</span></div>
+          <div class="lt"><span class="la">خ</span><span class="ln">khâ</span></div>
+        </div>
+        <div style="margin-top:6px;font-size:.52rem;color:var(--muted)">Réponse · Respuesta : ا · د · ذ · ر · ز · و</div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : 4 formes de la lettre -->
+    <div class="exo-block">
+      <div class="exo-hd">
+        <div class="exo-num">2</div>
+        <div class="exo-title-ar">أَكْمِل الأَشْكَال الأَرْبَعَة</div>
+        <div class="exo-title-fr">Complète les 4 formes · Completa las 4 formas</div>
+      </div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris chaque lettre dans ses 4 positions (isolée · initiale · médiane · finale)</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <div style="font-family:'Cinzel',serif;font-size:.46rem;color:var(--bxl);min-width:24px">ع</div>
+            <div class="forms4" style="flex:1">
+              <div class="f4card fi"><span class="f4label">ISOLÉE</span><span class="f4ar">ع</span><div class="f4line"></div></div>
+              <div class="f4card fa"><span class="f4label">INITIALE</span><span class="f4ar" style="font-size:.9rem">عَلِيّ</span><div class="f4line"></div></div>
+              <div class="f4card fm"><span class="f4label">MÉDIANE</span><span class="f4ar" style="font-size:.9rem">مَعْرُوف</span><div class="f4line"></div></div>
+              <div class="f4card ff"><span class="f4label">FINALE</span><span class="f4ar" style="font-size:.9rem">سَمِيع</span><div class="f4line"></div></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <div style="font-family:'Cinzel',serif;font-size:.46rem;color:var(--bxl);min-width:24px">ب</div>
+            <div class="forms4" style="flex:1">
+              <div class="f4card fi"><span class="f4label">ISOLÉE</span><div class="f4line"></div><div class="f4line"></div></div>
+              <div class="f4card fa"><span class="f4label">INITIALE</span><div class="f4line"></div><div class="f4line"></div></div>
+              <div class="f4card fm"><span class="f4label">MÉDIANE</span><div class="f4line"></div><div class="f4line"></div></div>
+              <div class="f4card ff"><span class="f4label">FINALE</span><div class="f4line"></div><div class="f4line"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Tracer -->
+    <div class="exo-block">
+      <div class="exo-hd">
+        <div class="exo-num">3</div>
+        <div class="exo-title-ar">تَدَرَّبْ عَلَى الكِتَابَة</div>
+        <div class="exo-title-fr">Trace les lettres · Traza las letras</div>
+      </div>
+      <div class="exo-bd">
+        <div class="exo-instr">Recopie chaque lettre 3 fois sur les lignes · Copia cada letra 3 veces</div>
+        <div class="arabic-write-grid">
+          <div class="aw-row"><span class="aw-model">أ</span><span class="aw-pho">alif</span><span class="aw-fr">première lettre</span><div class="aw-lines"><div class="aw-line"></div><div class="aw-line"></div></div></div>
+          <div class="aw-row"><span class="aw-model">ب</span><span class="aw-pho">bâ</span><span class="aw-fr">b</span><div class="aw-lines"><div class="aw-line"></div><div class="aw-line"></div></div></div>
+          <div class="aw-row"><span class="aw-model">م</span><span class="aw-pho">mîm</span><span class="aw-fr">m</span><div class="aw-lines"><div class="aw-line"></div><div class="aw-line"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">٢٨ حَرْف · ٤ أَشْكَال · ٦ حُرُوف ◆ لا تَتَّصِل يَسَاراً</div>
+      <div class="ret-fr">28 lettres · 4 formes (même son) · 6 lettres ◆ ne connectent jamais à gauche : <strong style="color:var(--goldl)">ا د ذ ر ز و</strong></div>
+    </div></div>
+
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 2</div></div>
+</div>
+
+
+<!-- MODULE 2 — HARAKATS -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 2 · وحدة ٢</div>
+    <div class="ph-title-ar">الحَرَكَات القَصِيرَة</div>
+    <div class="ph-title-fr">Les harakats · Las vocales breves</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 2</div><div class="mod-ar">الحَرَكَات — ٥ عَلَامَات</div><div class="mod-fr">Les harakats — exercices</div><div class="mod-es">Las harakats — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Reconnaître et nommer -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">اِعْرِف الحَرَكَة</div><div class="exo-title-fr">Nomme la harakat · Nombra la harakat</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris le nom et le son de chaque harakat sous chaque lettre</div>
+        <div class="hk-row">
+          <div class="hk-card"><span class="hs">بَ</span><span class="hn">Nom :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:3px"></div><span class="hv" style="font-size:.5rem">Son :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+          <div class="hk-card"><span class="hs">بِ</span><span class="hn">Nom :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:3px"></div><span class="hv" style="font-size:.5rem">Son :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+          <div class="hk-card"><span class="hs">بُ</span><span class="hn">Nom :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:3px"></div><span class="hv" style="font-size:.5rem">Son :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+          <div class="hk-card"><span class="hs">بْ</span><span class="hn">Nom :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:3px"></div><span class="hv" style="font-size:.5rem">Son :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+          <div class="hk-card"><span class="hs">بّ</span><span class="hn">Nom :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4);margin-top:3px"></div><span class="hv" style="font-size:.5rem">Son :</span><div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+        </div>
+        <div style="font-size:.48rem;color:var(--muted);margin-top:4px">Réponses : فَتْحَة=a · كَسْرَة=i · ضَمَّة=u · سُكُون=silence · شَدَّة=double</div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Lire à voix haute -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">اقْرَأ بِصَوْت</div><div class="exo-title-fr">Lis à voix haute · Lee en voz alta</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Lis chaque mot, écris sa transcription phonétique et son sens</div>
+        <div class="arabic-write-grid">
+          <div class="aw-row"><span class="aw-model">كَتَبَ</span><span class="aw-fr">Phonétique :</span><div class="aw-lines"><div class="aw-line"></div></div><span class="aw-fr">Sens :</span><div class="aw-lines"><div class="aw-line"></div></div></div>
+          <div class="aw-row"><span class="aw-model">رَبّ</span><span class="aw-fr">Phonétique :</span><div class="aw-lines"><div class="aw-line"></div></div><span class="aw-fr">Sens :</span><div class="aw-lines"><div class="aw-line"></div></div></div>
+          <div class="aw-row"><span class="aw-model">كُلّ</span><span class="aw-fr">Phonétique :</span><div class="aw-lines"><div class="aw-line"></div></div><span class="aw-fr">Sens :</span><div class="aw-lines"><div class="aw-line"></div></div></div>
+          <div class="aw-row"><span class="aw-model">مَلِك</span><span class="aw-fr">Phonétique :</span><div class="aw-lines"><div class="aw-line"></div></div><span class="aw-fr">Sens :</span><div class="aw-lines"><div class="aw-line"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : QCM harakat -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">أَيُّ حَرَكَة؟</div><div class="exo-title-fr">Quelle harakat ? · ¿Cuál harakat?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Coche la bonne réponse · Marca la respuesta correcta</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--bxd);font-weight:700;min-width:44px">بِ</span>
+            <div class="qcm-grid" style="flex:1">
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Fatha → a</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Kasra → i ✓</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Damma → u</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Sukun</span></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--bxd);font-weight:700;min-width:44px">كّ</span>
+            <div class="qcm-grid" style="flex:1">
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Fatha</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Kasra</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Sukun</span></div>
+              <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">Shadda (double) ✓</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">فَوْق: فَتْحَة(a) · ضَمَّة(u) · شَدَّة(bb) · سُكُون — تَحْت: كَسْرَة(i) فَقَط</div>
+      <div class="ret-fr">Au-dessus : fatha=a · damma=u · shadda=double · sukun=silence · En-dessous : <strong style="color:var(--goldl)">kasra=i uniquement</strong></div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 3</div></div>
+</div>
+
+<!-- MODULE 3 — MADD -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 3 · وحدة ٣</div>
+    <div class="ph-title-ar">المُدُود الثَّلَاثَة</div>
+    <div class="ph-title-fr">Les voyelles longues · Las vocales largas</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 3</div><div class="mod-ar">المَدّ — إِطَالَة الصَّوْت</div><div class="mod-fr">Le Madd — exercices</div><div class="mod-es">El Madd — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Identifier le type de madd -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">مَا نَوْعُ المَدّ؟</div><div class="exo-title-fr">Identifie le type de madd · Identifica el tipo</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris â, û ou î pour chaque mot · Escribe â, û o î para cada palabra</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الكَلِمَة</th><th>Son long</th><th>Lettre de prolongation</th><th>Type de Madd</th></tr>
+          <tr><td class="ar">الرَّحْمَان</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">رَحِيم</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">نُور</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">كَانَ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">كَرِيم</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+        <div style="font-size:.48rem;color:var(--muted);margin-top:4px">Réponses : â=fatha+ا · î=kasra+ي · û=damma+و</div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Compléter la lettre de prolongation -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">أَكْمِل بِحَرْف المَدّ</div><div class="exo-title-fr">Complète avec ا · و · ي · Completa con ا · و · ي</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Ajoute la lettre de prolongation manquante dans chaque mot</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="display:flex;align-items:center;gap:6px;direction:rtl;background:var(--off);border-radius:8px;padding:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd)">رَسُ__ل</span>
+            <div style="flex:1;border-bottom:1.5px dashed rgba(200,164,98,.4);height:20px;direction:ltr"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">û → و</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;direction:rtl;background:var(--off);border-radius:8px;padding:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd)">كِت__ب</span>
+            <div style="flex:1;border-bottom:1.5px dashed rgba(200,164,98,.4);height:20px;direction:ltr"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">â → ا</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;direction:rtl;background:var(--off);border-radius:8px;padding:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd)">الرَّح__م</span>
+            <div style="flex:1;border-bottom:1.5px dashed rgba(200,164,98,.4);height:20px;direction:ltr"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">î → ي</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;direction:rtl;background:var(--off);border-radius:8px;padding:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd)">ق__ل</span>
+            <div style="flex:1;border-bottom:1.5px dashed rgba(200,164,98,.4);height:20px;direction:ltr"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">â → ا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Repérer dans la Fatiha -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">فِي الفَاتِحَة — ابْحَث عَن المُدُود</div><div class="exo-title-fr">Repère les Madd dans la Fatiha · Encuentra los Madd</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Souligne les voyelles longues et écris leur type (â · û · î) au-dessus</div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div class="verset-exo"><div class="ve-num">1</div><div><div class="ve-ar">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div><div class="ve-line"></div></div></div>
+          <div class="verset-exo"><div class="ve-num">2</div><div><div class="ve-ar">الرَّحْمَنِ الرَّحِيمِ</div><div class="ve-line"></div></div></div>
+          <div class="verset-exo"><div class="ve-num">3</div><div><div class="ve-ar">مَالِكِ يَوْمِ الدِّينِ</div><div class="ve-line"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">فَتْحَة+ا=â · ضَمَّة+و=û · كَسْرَة+ي=î — حَرْف المَدّ صَامِت دَائِماً</div>
+      <div class="ret-fr">fatha+ا=<strong style="color:var(--goldl)">â</strong> · damma+و=<strong style="color:var(--goldl)">û</strong> · kasra+ي=<strong style="color:var(--goldl)">î</strong> · La lettre de prolongation est toujours muette</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 4</div></div>
+</div>
+
+
+<!-- MODULE 4 — TANWIN + HAMZA -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 4 · وحدة ٤</div>
+    <div class="ph-title-ar">التَّنْوِين · الهَمْزَة · هَمْزَة الوَصْل</div>
+    <div class="ph-title-fr">Tanwin · Hamza · Hamzat al-wasl</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 4</div><div class="mod-ar">التَّنْوِين والهَمْزَة</div><div class="mod-fr">Tanwin, Hamza — exercices</div><div class="mod-es">Tanwin, Hamza — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Ajouter le tanwin -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">أَضِف التَّنْوِين</div><div class="exo-title-fr">Ajoute le tanwin (UN/UNE) · Añade el tanwin</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Rends chaque nom indéfini en ajoutant ٌ · Hazlo indefinido añadiendo ٌ</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">المَعْرِفَة (LE)</th><th class="ar">النَّكِرَة (UN)</th><th>Son final</th></tr>
+          <tr><td class="ar">الكِتَابُ</td><td class="empty ar" style="font-size:.9rem">كِتَابٌ</td><td>kitâb<strong>un</strong></td></tr>
+          <tr><td class="ar">الوَلَدُ</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">الْبَيْتُ</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">الْمَاءُ</td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Choisir la forme de hamza -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">أَيُّ شَكْل لِلْهَمْزَة؟</div><div class="exo-title-fr">Quelle forme de hamza ? · ¿Qué forma lleva?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">La harakat la plus forte gagne : kasra→ئ · damma→ؤ · fatha→أ · fin→ء</div>
+        <div class="qcm-grid">
+          <div style="background:var(--off);border-radius:8px;padding:8px;text-align:center">
+            <div style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd);direction:rtl;margin-bottom:3px">سُؤَال</div>
+            <div style="font-size:.5rem;color:var(--muted)">damma → ؤ ✓</div>
+          </div>
+          <div style="background:var(--off);border-radius:8px;padding:8px;text-align:center">
+            <div style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd);direction:rtl;margin-bottom:3px">بِئْر</div>
+            <div style="font-size:.5rem;color:var(--muted)">kasra → ئ ✓</div>
+          </div>
+          <div style="background:var(--off);border-radius:8px;padding:8px;text-align:center">
+            <div style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd);direction:rtl;margin-bottom:3px">أَكَلَ</div>
+            <div style="font-size:.5rem;color:var(--muted)">fatha → أ ✓</div>
+          </div>
+          <div style="background:var(--off);border-radius:8px;padding:8px;text-align:center">
+            <div style="font-family:'Amiri',serif;font-size:1.3rem;color:var(--bxd);direction:rtl;margin-bottom:3px">شَيْء</div>
+            <div style="font-size:.5rem;color:var(--muted)">fin → ء ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Impératif u ou i -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">الأَمْر: u أَو i ؟</div><div class="exo-title-fr">Impératif : u ou i ? · ¿u o i?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Regarde la 2ème voyelle du présent : damma→u, kasra/fatha→i</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">المُضَارِع</th><th>2e voyelle</th><th class="ar">الأَمْر</th><th>Hamzat al-wasl</th></tr>
+          <tr><td class="ar">يَكْتُبُ</td><td>damma (u)</td><td class="ar">اُكْتُبْ</td><td><strong>u</strong>ktub ✓</td></tr>
+          <tr><td class="ar">يَضْرِبُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">يَفْتَحُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">يَقْرَأُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">تَنْوِين=نُون(UN) · كَسْرَة›ضَمَّة›فَتْحَة للهَمْزَة · الأَمْر: ضَمَّة=u, كَسْرَة/فَتْحَة=i</div>
+      <div class="ret-fr">Tanwin=UN (نكرة) · Hamza: kasra→ئ › damma→ؤ › fatha→أ · Impératif: <strong style="color:var(--goldl)">damma→u · kasra/fatha→i</strong></div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 5</div></div>
+</div>
+
+<!-- MODULE 5 — LUNAIRE / SOLAIRE -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 5 · وحدة ٥</div>
+    <div class="ph-title-ar">القَمَرِيَّة 🌙 والشَّمْسِيَّة ☀️</div>
+    <div class="ph-title-fr">Lunaire & Solaire · Lunar y Solar</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 5</div><div class="mod-ar">الحُرُوف القَمَرِيَّة وَالشَّمْسِيَّة</div><div class="mod-fr">Lunaire 🌙 & Solaire ☀️ — exercices</div><div class="mod-es">Lunar y Solar — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Classer lunaire/solaire -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">صَنِّف: قَمَرِيَّة أَو شَمْسِيَّة؟</div><div class="exo-title-fr">Classe les mots · Clasifica las palabras</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Place chaque mot dans la bonne colonne selon la 1ère lettre du nom</div>
+        <div class="sort-words">
+          <span class="sw">الشَّمْس</span><span class="sw">الْقَمَر</span><span class="sw">الرَّحْمَن</span><span class="sw">الْكِتَاب</span>
+          <span class="sw">الدِّين</span><span class="sw">الْبَيْت</span><span class="sw">النَّاس</span><span class="sw">الْعَالَم</span>
+        </div>
+        <div class="sort-boxes">
+          <div class="sort-box" style="border-color:rgba(168,200,255,.5);background:rgba(26,34,64,.03)">
+            <span class="sort-box-lbl" style="color:#2d3a6b">🌙 Lunaire — al-</span>
+            <div style="min-height:40px;font-family:'Amiri',serif;font-size:.9rem;color:var(--bxd);direction:rtl"></div>
+          </div>
+          <div class="sort-box" style="border-color:rgba(255,200,100,.5);background:rgba(107,26,10,.03)">
+            <span class="sort-box-lbl" style="color:#8B3A00">☀️ Solaire — shadda</span>
+            <div style="min-height:40px;font-family:'Amiri',serif;font-size:.9rem;color:var(--bxd);direction:rtl"></div>
+          </div>
+        </div>
+        <div style="font-size:.48rem;color:var(--muted);margin-top:4px">🌙 القمر · الكتاب · البيت · العالم · ☀️ الشمس · الرحمن · الدين · الناس</div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Lire avec ال -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">اقْرَأ مَعَ ال</div><div class="exo-title-fr">Lis avec ال · Lee con ال</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Transcris chaque mot en phonétique. Attention à la shadda pour les solaires !</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الكَلِمَة</th><th>🌙/☀️</th><th>Transcription phonétique</th></tr>
+          <tr><td class="ar">الشَّمْس</td><td>☀️</td><td style="text-align:left;padding-left:10px"><em style="color:var(--muted)">ash-shams</em></td></tr>
+          <tr><td class="ar">الْكِتَاب</td><td>🌙</td><td class="empty" style="text-align:left"></td></tr>
+          <tr><td class="ar">الرَّحِيم</td><td>☀️</td><td class="empty" style="text-align:left"></td></tr>
+          <tr><td class="ar">الْمُسْلِم</td><td>🌙</td><td class="empty" style="text-align:left"></td></tr>
+          <tr><td class="ar">الدِّين</td><td>☀️</td><td class="empty" style="text-align:left"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Fatiha -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">فِي الفَاتِحَة</div><div class="exo-title-fr">Identifie dans la Fatiha · Identifica en la Fatiha</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris 🌙 ou ☀️ au-dessus de chaque mot avec ال</div>
+        <div class="verset-exo"><div class="ve-num">1</div><div><div class="ve-ar">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div><div class="ve-line"></div></div></div>
+        <div class="verset-exo"><div class="ve-num">2</div><div><div class="ve-ar">الرَّحْمَنِ الرَّحِيمِ</div><div class="ve-line"></div></div></div>
+        <div style="font-size:.48rem;color:var(--muted);margin-top:4px">الحمد🌙 · العالمين🌙 · الرحمن☀️ · الرحيم☀️</div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">🌙قَمَرِيَّة: ال مَنْطُوقَة · ☀️شَمْسِيَّة: ل تَخْتَفِي + شَدَّة</div>
+      <div class="ret-fr">🌙 Lunaire → al- prononcé normalement · ☀️ Solaire → ل disparaît + <strong style="color:var(--goldl)">shadda</strong> sur la lettre</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 6</div></div>
+</div>
+
+
+<!-- MODULE 6 — VOCABULAIRE -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 6 · وحدة ٦</div>
+    <div class="ph-title-ar">المُفْرَدَات</div>
+    <div class="ph-title-fr">Le vocabulaire · El vocabulario</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 6</div><div class="mod-ar">المُفْرَدَات الأَسَاسِيَّة</div><div class="mod-fr">Vocabulaire — exercices</div><div class="mod-es">Vocabulario — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Relier emoji et mot -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">اِرْبِط الكَلِمَة بِالصُّورَة</div><div class="exo-title-fr">Relie chaque mot à son emoji · Une chaque palabra con su emoji</div></div>
+      <div class="exo-bd">
+        <div class="match-grid">
+          <div class="match-col">
+            <div class="match-item-ar">أَب</div>
+            <div class="match-item-ar">قَمَر</div>
+            <div class="match-item-ar">كِتَاب</div>
+            <div class="match-item-ar">قَلْب</div>
+            <div class="match-item-ar">شَمْس</div>
+          </div>
+          <div class="match-lines">
+            <div class="match-dot"></div>
+            <div class="match-dot"></div>
+            <div class="match-dot"></div>
+            <div class="match-dot"></div>
+            <div class="match-dot"></div>
+          </div>
+          <div class="match-col">
+            <div class="match-item-fr">📖 livre</div>
+            <div class="match-item-fr">❤️ cœur</div>
+            <div class="match-item-fr">👨 père</div>
+            <div class="match-item-fr">🌙 lune</div>
+            <div class="match-item-fr">🌞 soleil</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Grille vocab -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">اكْتُب بِالعَرَبِيَّة</div><div class="exo-title-fr">Écris en arabe · Escribe en árabe</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris le mot arabe correspondant à chaque emoji</div>
+        <div class="vc-grid">
+          <div class="vc"><span class="vc-emoji">👩</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">mère · madre</span></div>
+          <div class="vc"><span class="vc-emoji">🏠</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">maison · casa</span></div>
+          <div class="vc"><span class="vc-emoji">💧</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">eau · agua</span></div>
+          <div class="vc"><span class="vc-emoji">👁️</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">œil · ojo</span></div>
+          <div class="vc"><span class="vc-emoji">🌳</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">arbre · árbol</span></div>
+          <div class="vc"><span class="vc-emoji">✋</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">main · mano</span></div>
+          <div class="vc"><span class="vc-emoji">✨</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">lumière · luz</span></div>
+          <div class="vc"><span class="vc-emoji">🐱</span><div style="height:16px;border-bottom:1px dashed rgba(200,164,98,.4)"></div><span class="vc-fr">chat · gato</span></div>
+        </div>
+        <div style="font-size:.46rem;color:var(--muted);margin-top:5px;direction:rtl;text-align:right">أُمّ · بَيْت · مَاء · عَيْن · شَجَرَة · يَد · نُور · قِطَّة</div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Trouver l'intrus -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">اِجِد الدَّخِيل</div><div class="exo-title-fr">Trouve l'intrus · Encuentra el intruso</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Entoure le mot qui n'appartient pas à la même famille de sens</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="highlight-row">
+            <span class="hl-word">أَب</span><span class="hl-word">أُمّ</span><span class="hl-word">كِتَاب</span><span class="hl-word">أَخ</span><span class="hl-word">بِنْت</span>
+          </div>
+          <div style="font-size:.5rem;color:var(--muted);text-align:center">→ Intrus : كِتَاب (pas une personne de la famille)</div>
+          <div class="highlight-row">
+            <span class="hl-word">شَمْس</span><span class="hl-word">قَمَر</span><span class="hl-word">نُور</span><span class="hl-word">قَلْب</span><span class="hl-word">نَجْم</span>
+          </div>
+          <div style="height:14px;border-bottom:1px dashed rgba(200,164,98,.3);width:60%;margin:0 auto"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Mon défi · Mi desafío</div>
+      <div class="ret-ar">احْفَظ ٣ كَلِمَات كُلَّ يَوْم — بَعْدَ أُسْبُوعَيْن قَامُوسُكَ كَبِير!</div>
+      <div class="ret-fr">Mémorise <strong style="color:var(--goldl)">3 mots par jour</strong> avec emoji + arabe + sens. Dis-les à voix haute 5 fois !</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 7</div></div>
+</div>
+
+<!-- MODULE 7 — SOURATES -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 7 · وحدة ٧</div>
+    <div class="ph-title-ar">سُورَة الكَوْثَر وَالإِخْلَاص</div>
+    <div class="ph-title-fr">Al-Kawthar & Al-Ikhlâs — Exercices de lecture</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 7</div><div class="mod-ar">سُورَتَان — تَدَرُّبَات</div><div class="mod-fr">Deux sourates — exercices d'analyse</div><div class="mod-es">Dos suras — ejercicios de análisis</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Relier verset et traduction -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">اِرْبِط الآيَة بِتَرْجُمَتِهَا</div><div class="exo-title-fr">Relie le verset à sa traduction · Une el versículo a su traducción</div></div>
+      <div class="exo-bd">
+        <div class="match-grid">
+          <div class="match-col">
+            <div class="match-item-ar" style="font-size:.9rem">إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ</div>
+            <div class="match-item-ar" style="font-size:.9rem">قُلْ هُوَ اللهُ أَحَدٌ</div>
+            <div class="match-item-ar" style="font-size:.9rem">فَصَلِّ لِرَبِّكَ وَانْحَرْ</div>
+          </div>
+          <div class="match-lines"><div class="match-dot"></div><div class="match-dot"></div><div class="match-dot"></div></div>
+          <div class="match-col">
+            <div class="match-item-fr">Dis : Il est Allah, l'Unique</div>
+            <div class="match-item-fr">Nous t'avons donné l'abondance</div>
+            <div class="match-item-fr">Prie ton Seigneur et sacrifie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Analyser les règles -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">حَلِّل القَوَاعِد</div><div class="exo-title-fr">Analyse les règles · Analiza las reglas</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Pour chaque mot, identifie la règle utilisée : 🌙🌙 Madd â/û/î · 🌙 lunaire · ☀️ solaire · ٌ tanwin</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الكَلِمَة</th><th>Règle(s) identifiée(s)</th><th>Explication</th></tr>
+          <tr><td class="ar">الرَّحْمَن</td><td style="text-align:left;padding-left:8px">☀️ + Madd â</td><td style="font-size:.5rem;text-align:left;padding-left:8px;color:var(--muted)">shadda sur ر + fatha+ا</td></tr>
+          <tr><td class="ar">الْكَوْثَرَ</td><td class="empty" style="text-align:left"></td><td class="empty" style="text-align:left"></td></tr>
+          <tr><td class="ar">أَحَدٌ</td><td class="empty" style="text-align:left"></td><td class="empty" style="text-align:left"></td></tr>
+          <tr><td class="ar">الصَّمَدُ</td><td class="empty" style="text-align:left"></td><td class="empty" style="text-align:left"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Compléter les versets -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">أَكْمِل الآيَات</div><div class="exo-title-fr">Complète les versets · Completa los versículos</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Écris le mot manquant sur la ligne pointillée</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="verset-exo"><div class="ve-num">1</div><div><div class="ve-ar">إِنَّا أَعْطَيْنَاكَ .....................</div><div style="font-size:.5rem;color:var(--muted)">(الْكَوْثَرَ)</div></div></div>
+          <div class="verset-exo"><div class="ve-num">2</div><div><div class="ve-ar">قُلْ هُوَ اللهُ .....................</div><div style="font-size:.5rem;color:var(--muted)">(أَحَدٌ)</div></div></div>
+          <div class="verset-exo"><div class="ve-num">3</div><div><div class="ve-ar">لَمْ يَلِدْ وَلَمْ .....................</div><div style="font-size:.5rem;color:var(--muted)">(يُولَدْ)</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">الإِخْلَاص وَالكَوْثَر — مِنْ أَقْصَر السُّوَر وَأَكْثَرِهَا بَرَكَة</div>
+      <div class="ret-fr">Al-Ikhlâs = 1/3 du Coran en valeur. Al-Kawthar = la plus courte sourate (3 versets). <strong style="color:var(--goldl)">Lis-les à chaque prière !</strong></div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 8</div></div>
+</div>
+
+
+<!-- MODULE 8 — LE NOM -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 8 · وحدة ٨</div>
+    <div class="ph-title-ar">الاِسْم — الجِنْس والعَدَد والتَّعْرِيف</div>
+    <div class="ph-title-fr">Le Nom — Genre, Nombre, Définition</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 8</div><div class="mod-ar">الاِسْم يَحْمِل ٣ مَعْلُومَات</div><div class="mod-fr">Le nom — 3 infos — exercices</div><div class="mod-es">El nombre — 3 datos — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Mettre au féminin -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">حَوِّل إِلَى مُؤَنَّث (أَضِف ة)</div><div class="exo-title-fr">Mets au féminin (ajoute ة) · Pon en femenino</div></div>
+      <div class="exo-bd">
+        <table class="tbl-exo">
+          <tr><th class="ar">مُذَكَّر (masc.)</th><th class="ar">مُؤَنَّث (fém. + ة)</th><th>FR masc.</th><th>FR fém.</th></tr>
+          <tr><td class="ar">طَالِب</td><td class="ar" style="color:var(--c2)">طَالِبَة ✓</td><td>étudiant</td><td>étudiante</td></tr>
+          <tr><td class="ar">مُسْلِم</td><td class="empty"></td><td>musulman</td><td class="empty"></td></tr>
+          <tr><td class="ar">مُعَلِّم</td><td class="empty"></td><td>professeur</td><td class="empty"></td></tr>
+          <tr><td class="ar">كَبِير</td><td class="empty"></td><td>grand</td><td class="empty"></td></tr>
+          <tr><td class="ar">مُؤْمِن</td><td class="empty"></td><td>croyant</td><td class="empty"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Défini / Indéfini -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">مَعْرِفَة أَم نَكِرَة؟</div><div class="exo-title-fr">Défini ou Indéfini ? · ¿Definido o indefinido?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Transforme chaque nom : défini (ال) ↔ indéfini (tanwin ٌ)</div>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="font-family:'Amiri',serif;font-size:1.1rem;color:var(--bxd);direction:rtl;padding:5px 8px;background:var(--off);border-radius:7px;text-align:right;border-left:3px solid var(--bxl)">الكِتَابُ</div>
+            <div style="font-family:'Amiri',serif;font-size:1.1rem;color:var(--bxd);direction:rtl;padding:5px 8px;background:var(--off);border-radius:7px;text-align:right;border-left:3px solid var(--bxl)">الوَلَدُ</div>
+            <div style="font-family:'Amiri',serif;font-size:1.1rem;color:var(--bxd);direction:rtl;padding:5px 8px;background:var(--off);border-radius:7px;text-align:right;border-left:3px solid var(--bxl)">الْبَيْتُ</div>
+          </div>
+          <div style="font-size:1.1rem;color:var(--gold);font-weight:900;text-align:center">↔</div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="height:32px;border-bottom:1.5px dashed rgba(200,164,98,.4);background:var(--goldp);border-radius:7px;border:1.5px dashed rgba(200,164,98,.3)"></div>
+            <div style="height:32px;border-bottom:1.5px dashed rgba(200,164,98,.4);background:var(--goldp);border-radius:7px;border:1.5px dashed rgba(200,164,98,.3)"></div>
+            <div style="height:32px;border-bottom:1.5px dashed rgba(200,164,98,.4);background:var(--goldp);border-radius:7px;border:1.5px dashed rgba(200,164,98,.3)"></div>
+          </div>
+        </div>
+        <div style="font-size:.48rem;color:var(--muted);margin-top:4px">كِتَابٌ · وَلَدٌ · بَيْتٌ</div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Former le pluriel -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">كَوِّن الجَمْع</div><div class="exo-title-fr">Forme le pluriel · Forma el plural</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Pluriel sain masc. + ون · Pluriel sain fém. + ات · Pluriel brisé = mémoriser !</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">المُفْرَد</th><th>FR sing.</th><th class="ar">الجَمْع</th><th>Type pluriel</th></tr>
+          <tr><td class="ar">مُسْلِم</td><td>musulman</td><td class="ar" style="color:var(--c2)">مُسْلِمُون ✓</td><td>sain masc. ون</td></tr>
+          <tr><td class="ar">مُؤْمِنَة</td><td>croyante</td><td class="empty"></td><td>sain fém. ات</td></tr>
+          <tr><td class="ar">كِتَاب</td><td>livre</td><td class="ar" style="color:var(--muted)">كُتُب</td><td>brisé (mémoriser)</td></tr>
+          <tr><td class="ar">وَلَد</td><td>garçon</td><td class="ar" style="color:var(--muted)">أَوْلَاد</td><td>brisé (mémoriser)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">الاِسْم: ة=مُؤَنَّث · ال=مَعْرِفَة · تَنْوِين=نَكِرَة · ون/ات=جَمْع سَالِم</div>
+      <div class="ret-fr"><strong style="color:var(--goldl)">ة</strong>=féminin · <strong style="color:var(--goldl)">ال</strong>=LE/LA · <strong style="color:var(--goldl)">ٌ</strong>=UN/UNE · <strong style="color:var(--goldl)">ون/ات</strong>=pluriel régulier</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 9</div></div>
+</div>
+
+<!-- MODULE 9 — PHRASE NOMINALE -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 9 · وحدة ٩</div>
+    <div class="ph-title-ar">الجُمْلَة الاِسْمِيَّة</div>
+    <div class="ph-title-fr">La phrase nominale · La frase nominal</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 9</div><div class="mod-ar">مُبْتَدَأ + خَبَر</div><div class="mod-fr">Phrase nominale — exercices</div><div class="mod-es">Frase nominal — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Identifier mubtada et khabar -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">حَدِّد المُبْتَدَأ والخَبَر</div><div class="exo-title-fr">Identifie sujet & prédicat · Identifica sujeto y predicado</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Souligne le مُبْتَدَأ en bleu et le خَبَر en vert · Subraya en azul y verde</div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div class="phrase-boxes">
+            <div class="pb-blue">اللهُ</div><span class="pb-plus" style="font-size:.7rem">+</span><div class="pb-green">أَحَدٌ</div>
+            <span style="font-size:.6rem;color:var(--muted);direction:ltr">= Allah est Un</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;direction:rtl;padding:6px 8px;background:var(--off);border-radius:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.15rem;color:var(--bxd);font-weight:700">الوَلَدُ كَبِيرٌ</span>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">→ مبتدأ : _____ · خبر : _____</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;direction:rtl;padding:6px 8px;background:var(--off);border-radius:8px">
+            <span style="font-family:'Amiri',serif;font-size:1.15rem;color:var(--bxd);font-weight:700">الكِتَابُ جَمِيلٌ</span>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">→ مبتدأ : _____ · خبر : _____</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Construire des phrases -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">كَوِّن جُمَلاً</div><div class="exo-title-fr">Construis des phrases · Construye frases</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Assemble les boîtes pour former une phrase correcte (accorde le prédicat !)</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;direction:rtl">
+            <div class="pb-blue" style="font-size:.88rem">الشَّمْسُ</div><span class="pb-plus">+</span>
+            <div class="pb-empty"></div><span class="pb-eq">=</span>
+            <div class="pb-empty" style="min-width:80px"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">(كَبِيرَة / جَمِيلَة)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;direction:rtl">
+            <div class="pb-blue" style="font-size:.88rem">البِنْتُ</div><span class="pb-plus">+</span>
+            <div class="pb-empty"></div><span class="pb-eq">=</span>
+            <div class="pb-empty" style="min-width:80px"></div>
+            <span style="font-size:.5rem;color:var(--muted);direction:ltr">(كَرِيمَة / مُؤْمِنَة)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Accorder le prédicat -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">وَافِق الخَبَر مَعَ المُبْتَدَأ</div><div class="exo-title-fr">Accorde le prédicat · Concuerda el predicado</div></div>
+      <div class="exo-bd">
+        <table class="tbl-exo">
+          <tr><th class="ar">المُبْتَدَأ</th><th>Genre</th><th class="ar">الخَبَر صَحِيح</th><th>Traduction</th></tr>
+          <tr><td class="ar">الوَلَدُ</td><td>masc.</td><td class="ar" style="color:var(--c2)">كَبِيرٌ ✓</td><td>Le garçon est grand</td></tr>
+          <tr><td class="ar">البِنْتُ</td><td>fém.</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">الْمَاءُ</td><td>masc.</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">المَدْرَسَةُ</td><td>fém.</td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+        <div style="font-size:.46rem;color:var(--muted);margin-top:4px">كَبِيرَةٌ · بَارِدٌ · جَمِيلَةٌ</div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">مُبْتَدَأ (ال) + خَبَر (تَنْوِين) — بِدُونِ كَانَ — يَتَطَابَقَان فِي الجِنْس</div>
+      <div class="ret-fr">Sujet (ال défini) + Prédicat (tanwin indéfini) — <strong style="color:var(--goldl)">pas de "être"</strong> — accord genre obligatoire</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 10</div></div>
+</div>
+
+
+<!-- MODULE 10 — LE VERBE -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 10 · وحدة ١٠</div>
+    <div class="ph-title-ar">الفِعْل — الأَزْمِنَة الثَّلَاثَة</div>
+    <div class="ph-title-fr">Le Verbe — 3 temps · El Verbo — 3 tiempos</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 10</div><div class="mod-ar">الفِعْل — الماضِي والمُضَارِع والأَمْر</div><div class="mod-fr">Le verbe — exercices</div><div class="mod-es">El verbo — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Conjuguer au passé -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">صَرِّف فِي الماضِي</div><div class="exo-title-fr">Conjugue au passé · Conjuga en pasado</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Conjugue le verbe كَتَبَ (écrire) selon les pronoms</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الضَّمِير</th><th>FR</th><th class="ar">الماضِي</th><th>Transcription</th></tr>
+          <tr><td class="ar">هُوَ</td><td>il</td><td class="ar" style="color:var(--c2)">كَتَبَ ✓</td><td>kataba</td></tr>
+          <tr><td class="ar">هِيَ</td><td>elle</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">أَنْتَ</td><td>tu (m.)</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">أَنَا</td><td>je</td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">نَحْنُ</td><td>nous</td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+        <div style="font-size:.46rem;color:var(--muted);margin-top:4px">كَتَبَتْ · كَتَبْتَ · كَتَبْتُ · كَتَبْنَا</div>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Passé ou Présent -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">مَاضٍ أَم مُضَارِع؟</div><div class="exo-title-fr">Passé ou Présent ? · ¿Pasado o Presente?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Coche la bonne case et traduis · Marca y traduce</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الفِعْل</th><th>Passé</th><th>Présent</th><th>Traduction FR</th></tr>
+          <tr><td class="ar">كَتَبَ</td><td>✓</td><td></td><td>il a écrit</td></tr>
+          <tr><td class="ar">يَكْتُبُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">قَرَأَ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">يَعْبُدُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">خَلَقَ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+        <div style="font-size:.46rem;color:var(--muted);margin-top:4px">il écrit · il a lu · il adore · il a créé</div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Former l'impératif -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">كَوِّن الأَمْر</div><div class="exo-title-fr">Forme l'impératif · Forma el imperativo</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">2ème voyelle damma→u (اُ) · kasra ou fatha→i (اِ)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          <div style="background:rgba(74,155,142,.07);border:1.5px solid var(--c2);border-radius:8px;padding:7px;text-align:center">
+            <div style="font-size:.52rem;font-weight:800;color:var(--c2);margin-bottom:4px">يَكْتُبُ → damma → u</div>
+            <div style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--bxd);direction:rtl;margin-bottom:3px">اُكْتُبْ !</div>
+            <div style="font-size:.5rem;color:var(--muted)">uktub — écris !</div>
+          </div>
+          <div style="background:rgba(91,141,184,.07);border:1.5px solid var(--c3);border-radius:8px;padding:7px;text-align:center">
+            <div style="font-size:.52rem;font-weight:800;color:var(--c3);margin-bottom:4px">يَضْرِبُ → kasra → i</div>
+            <div style="font-family:'Amiri',serif;font-size:1.2rem;color:var(--bxd);direction:rtl;margin-bottom:3px">اِضْرِبْ !</div>
+            <div style="font-size:.5rem;color:var(--muted)">idrib — frappe !</div>
+          </div>
+          <div style="background:var(--off);border:1.5px dashed rgba(200,164,98,.4);border-radius:8px;padding:7px;text-align:center">
+            <div style="font-size:.5rem;color:var(--muted);margin-bottom:4px">يَفْتَحُ (fatha → i)</div>
+            <div style="height:18px;border-bottom:1px dashed rgba(200,164,98,.4)"></div>
+            <div style="font-size:.46rem;color:var(--muted);margin-top:2px">= ouvre !</div>
+          </div>
+          <div style="background:var(--off);border:1.5px dashed rgba(200,164,98,.4);border-radius:8px;padding:7px;text-align:center">
+            <div style="font-size:.5rem;color:var(--muted);margin-bottom:4px">يَقْرَأُ (fatha → i)</div>
+            <div style="height:18px;border-bottom:1px dashed rgba(200,164,98,.4)"></div>
+            <div style="font-size:.46rem;color:var(--muted);margin-top:2px">= lis !</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">الماضِي: لَاحِقَة آخِر · المُضَارِع: سَابِقَة أَوَّل · الأَمْر: هَمْزَة u أَو i</div>
+      <div class="ret-fr">Passé → lettres à la <strong style="color:var(--goldl)">fin</strong> · Présent → lettres au <strong style="color:var(--goldl)">début</strong> · Impératif → u (damma) ou i (kasra/fatha)</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 11</div></div>
+</div>
+
+<!-- MODULE 11 — PHRASE VERBALE -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 11 · وحدة ١١</div>
+    <div class="ph-title-ar">الجُمْلَة الفِعْلِيَّة</div>
+    <div class="ph-title-fr">La phrase verbale · La frase verbal</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 11</div><div class="mod-ar">فِعْل + فَاعِل + مَفْعُول</div><div class="mod-fr">Phrase verbale — exercices</div><div class="mod-es">Frase verbal — ejercicios</div><div class="mod-rule"></div></div>
+
+    <!-- EXO 1 : Nominale ou Verbale -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">اسْمِيَّة أَم فِعْلِيَّة؟</div><div class="exo-title-fr">Nominale ou Verbale ? · ¿Nominal o Verbal?</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Le 1er mot décide : NOM → nominale · VERBE → verbale</div>
+        <table class="tbl-exo">
+          <tr><th class="ar">الجُمْلَة</th><th>1er mot</th><th>Type</th><th>Traduction</th></tr>
+          <tr><td class="ar">اللهُ أَحَدٌ</td><td style="color:var(--c3)">اللهُ (nom)</td><td style="color:var(--c3)">Nominale ✓</td><td>Allah est Un</td></tr>
+          <tr><td class="ar">كَتَبَ الوَلَدُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">الْمَاءُ بَارِدٌ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+          <tr><td class="ar">قَرَأَتِ البِنْتُ</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- EXO 2 : Construire des phrases verbales -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">رَتِّب الكَلِمَات</div><div class="exo-title-fr">Range les mots dans l'ordre · Ordena las palabras</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">VERBE → SUJET → COMPLÉMENT (direction RTL)</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:var(--goldp);border-radius:9px;padding:7px">
+            <div style="font-size:.52rem;font-weight:700;color:var(--bxd);margin-bottom:4px">الوَلَدُ · كَتَبَ · الدَّرْسَ</div>
+            <div style="display:flex;gap:5px;direction:rtl;flex-wrap:wrap;margin-bottom:3px">
+              <div class="pb-red" style="font-size:.85rem">كَتَبَ</div><div class="pb-blue" style="font-size:.85rem">الوَلَدُ</div><div style="background:var(--c4);color:var(--white);border-radius:8px;padding:5px 10px;font-family:'Amiri',serif;font-size:.85rem;direction:rtl;font-weight:700">الدَّرْسَ</div>
+            </div>
+            <div style="font-size:.52rem;color:var(--muted)">= Le garçon a écrit la leçon</div>
+          </div>
+          <div style="background:var(--off);border-radius:9px;padding:7px;border:1.5px dashed rgba(200,164,98,.3)">
+            <div style="font-size:.52rem;font-weight:700;color:var(--bxd);margin-bottom:4px">الكِتَابَ · قَرَأَتْ · البِنْتُ</div>
+            <div style="min-height:28px;direction:rtl"></div>
+            <div style="font-size:.48rem;color:var(--c2)">→ La fille a lu le livre</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXO 3 : Analyser dans la Fatiha -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">3</div><div class="exo-title-ar">فِي الفَاتِحَة — حَلِّل</div><div class="exo-title-fr">Analyse dans la Fatiha · Analiza en la Fatiha</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Identifie le verbe (فِعْل) et le sujet (فَاعِل) dans chaque verset verbal</div>
+        <div class="verset-exo"><div class="ve-num">4</div><div><div class="ve-ar">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</div><div class="ve-ph">iyyâka na'budu...</div><div style="font-size:.5rem;color:var(--muted)">Verbe : _________ · Sujet (implicite) : _________</div></div></div>
+        <div class="verset-exo"><div class="ve-num">5</div><div><div class="ve-ar">اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ</div><div class="ve-ph">ihdinâ s-sirâta...</div><div style="font-size:.5rem;color:var(--muted)">Verbe (impératif) : _________ · Sens : _________</div></div></div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">✦</div><div>
+      <div class="ret-lbl">Je retiens · Recuerdo</div>
+      <div class="ret-ar">فِعْلِيَّة: فِعْل أَوَّلاً · اسْمِيَّة: اسْم أَوَّلاً — الفِعْل يَتَطَابَق مَعَ فَاعِلِه</div>
+      <div class="ret-fr">Verbale → <strong style="color:var(--goldl)">VERBE en 1er</strong> · Nominale → NOM en 1er · Le verbe s'accorde en genre avec son sujet</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com</div><div class="pf-pg">p. 12</div></div>
+</div>
+
+
+<!-- MODULE 12 — LECTURE GUIDÉE FATIHA -->
+<div class="page">
+  <div class="p-head">
+    <div class="ph-brand">دار الكلمة</div><div class="ph-sep"></div>
+    <div class="ph-mod">Module 12 · وحدة ١٢ — Lecture guidée finale</div>
+    <div class="ph-title-ar">سُورَة الفَاتِحَة — تَحْلِيل شَامِل</div>
+    <div class="ph-title-fr">Al-Fatiha — Analyse complète · Análisis completo</div>
+  </div>
+  <div class="p-body">
+    <div class="mod-hd"><div class="mod-badge">Module 12 — Final</div><div class="mod-ar">سُورَة الفَاتِحَة الكَرِيمَة</div><div class="mod-fr">Fatiha — analyse de tous les modules 1 à 11</div><div class="mod-es">Fatiha — análisis de todos los módulos 1 a 11</div><div class="mod-rule"></div></div>
+
+    <!-- EXO PRINCIPAL : Analyse verset par verset -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">1</div><div class="exo-title-ar">حَلِّل كُلَّ آيَة</div><div class="exo-title-fr">Analyse chaque verset — toutes les règles · Analiza cada versículo</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Pour chaque verset : identifie Madd (â/û/î) · 🌙/☀️ · tanwin · shadda · type de phrase</div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div class="verset-exo"><div class="ve-num">1</div><div>
+            <div class="ve-ar">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+            <div class="ve-ph">al-hamdu li-llâhi rabbi l-âlamîn</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px">
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Madd :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>🌙☀️ :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Type :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+            </div>
+          </div></div>
+          <div class="verset-exo"><div class="ve-num">2</div><div>
+            <div class="ve-ar">الرَّحْمَنِ الرَّحِيمِ</div>
+            <div class="ve-ph">ar-rahmâni r-rahîm</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px">
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Madd :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>🌙☀️ :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Shadda :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+            </div>
+          </div></div>
+          <div class="verset-exo"><div class="ve-num">4</div><div>
+            <div class="ve-ar">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ</div>
+            <div class="ve-ph">iyyâka na'budu wa-iyyâka nasta-în</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px">
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Madd :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Type phrase :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Verbe :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+            </div>
+          </div></div>
+          <div class="verset-exo"><div class="ve-num">5</div><div>
+            <div class="ve-ar">اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ</div>
+            <div class="ve-ph">ihdinâ s-sirâta l-mustaqîm</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px">
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Hamzat wasl :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>☀️ solaire :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+              <div style="background:var(--off);border-radius:5px;padding:3px 5px;font-size:.44rem"><strong>Madd î :</strong> <div style="height:10px;border-bottom:1px dashed rgba(200,164,98,.4)"></div></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RÉCAP FINAL -->
+    <div class="exo-block">
+      <div class="exo-hd"><div class="exo-num">2</div><div class="exo-title-ar">مُرَاجَعَة الوَحَدَات</div><div class="exo-title-fr">Récapitulatif des 12 modules · Resumen final</div></div>
+      <div class="exo-bd">
+        <div class="exo-instr">Coche ce que tu maîtrises · Marca lo que dominas</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M1 — 28 lettres + 4 formes</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M2 — Harakats (a · i · u)</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M3 — Madd â · û · î</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M4 — Tanwin + Hamza</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M5 — 🌙 Lunaire / ☀️ Solaire</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M6 — Vocabulaire de base</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M7 — Al-Kawthar + Al-Ikhlâs</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M8 — Nom : genre/nb/définition</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M9 — Phrase nominale</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M10 — Le verbe 3 temps</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M11 — Phrase verbale</span></div>
+          <div class="qcm-item"><div class="qcm-circle"></div><span class="qcm-txt">M12 — Je lis la Fatiha !</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ret"><div class="ret-star">🌟</div><div>
+      <div class="ret-lbl">مَبْرُوك ! Félicitations ! ¡Felicidades!</div>
+      <div class="ret-ar">أَنْتَ الآنَ تَقْرَأ وَتَفْهَم وَتَكْتُب العَرَبِيَّة — اسْتَمِرَّ كُلَّ يَوْم!</div>
+      <div class="ret-fr"><strong style="color:var(--goldl)">Tu lis, comprends et écris l'arabe !</strong> Continue 15 min par jour — chaque jour compte. Que Allah bénisse ton apprentissage. 🤲</div>
+    </div></div>
+  </div>
+  <div class="p-foot"><div class="pf-copy">© Dar Al-Kalimah · daralkalimah.com · Houda Lahrichi</div><div class="pf-pg">p. 13</div></div>
+</div>
+
+<div class="sc"><button class="btn-print" onclick="window.print()">◆ Imprimer le Workbook Complet — 13 pages A4</button></div>
+
+<script>
+(function(){
+  if(typeof IntersectionObserver === 'undefined') return;
+  var map = [
+    ['.page .mod-hd','up'],
+    ['.exo-block','up'],
+    ['.ret','up'],
+    ['.lt','fade'],
+    ['.hk-card','scale'],
+    ['.vc','scale'],
+    ['.qcm-item','right'],
+    ['.match-item-ar','right'],
+    ['.match-item-fr','right'],
+    ['.verset-exo','up'],
+    ['.sort-box','up'],
+    ['.f4card','scale'],
+    ['.phrase-boxes','up'],
+  ];
+  map.forEach(function(item){
+    document.querySelectorAll(item[0]).forEach(function(el){
+      if(el.classList.contains('will-anim')) return;
+      el.classList.add('will-anim', item[1]);
+    });
+  });
+  function stagger(sel, step){
+    var parents = new Map();
+    document.querySelectorAll(sel).forEach(function(el){
+      var p = el.parentElement;
+      if(!parents.has(p)) parents.set(p,[]);
+      parents.get(p).push(el);
+    });
+    parents.forEach(function(items){
+      items.forEach(function(el,i){ el.style.transitionDelay = (i*step).toFixed(2)+'s'; });
+    });
+  }
+  stagger('.exo-block', 0.1);
+  stagger('.qcm-item',  0.05);
+  stagger('.lt',        0.02);
+  stagger('.hk-card',   0.07);
+  stagger('.vc',        0.05);
+  stagger('.verset-exo',0.07);
+  stagger('.f4card',    0.08);
+  document.querySelectorAll('.page').forEach(function(page){
+    page.querySelectorAll('.exo-block').forEach(function(e,i){
+      e.style.transitionDelay = (i*0.1).toFixed(2)+'s';
+    });
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.08, rootMargin:'0px 0px -20px 0px' });
+  document.querySelectorAll('.will-anim').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
